@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background-color: bisque;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin: 0px;
+}
+
+.pixel {
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+  background-color: aliceblue;
+}
