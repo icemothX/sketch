@@ -4,6 +4,7 @@ let grid = 16;
 let gridArray = []; //array of individual grid items [N x N]
 let rowArray = []; // array of div containers [N]
 let mouseDown = false;
+let defaultBackground = "aliceblue";
 
 for (let i=0; i<grid; i++) {
   rowArray.push(document.createElement('div'));
@@ -19,7 +20,9 @@ for (let i=0; i<grid; i++) {
 }
 
 container.addEventListener("mousedown", () => mouseDown=true);
-container.addEventListener("mouseup", () => mouseDown=false);
+document.addEventListener("mouseup", () => mouseDown=false);
+
+clear.addEventListener("click", clearGrid);
 
 gridArray.forEach(row => row.forEach(pixel => {
   pixel.addEventListener("click", addColor)}));
@@ -35,5 +38,9 @@ function addColor(event) {
   event.target.style.backgroundColor="chocolate";
 };
 
-
+function clearGrid() {
+  gridArray.forEach(row => row.forEach(pixel => {
+    pixel.style.backgroundColor=defaultBackground;
+  }))
+}
 
