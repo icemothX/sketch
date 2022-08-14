@@ -13,7 +13,6 @@ body {
 .row {
   display: flex;
   flex-direction: row;
-  padding: 5px;
   margin: 0px;
 }
 
@@ -22,4 +21,10 @@ body {
   height: 16px;
   margin: 2px;
   background-color: aliceblue;
+  /*transition: all 0.01s;*/
+}
+
+.pixel:hover {
+  background-color: coral;
+  /*transition: all 0.4s;*/
 }
