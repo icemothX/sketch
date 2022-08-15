@@ -4,7 +4,10 @@ let grid = 16;
 let gridArray = []; //array of individual grid items [N x N]
 let rowArray = []; // array of div containers [N]
 let mouseDown = false;
-let defaultBackground = "aliceblue";
+const defBackground = "aliceblue";
+let defColor = "chocolate";
+let lastButton = color;
+const togglable = document.querySelectorAll(".toggle");
 
 for (let i=0; i<grid; i++) {
   rowArray.push(document.createElement('div'));
@@ -24,6 +27,8 @@ document.addEventListener("mouseup", () => mouseDown=false);
 
 clear.addEventListener("click", clearGrid);
 
+togglable.forEach(button => button.addEventListener("click", togglePen));
+
 gridArray.forEach(row => row.forEach(pixel => {
   pixel.addEventListener("click", addColor)}));
 
@@ -34,13 +39,29 @@ function handleMouse(event) {
   if (mouseDown) addColor(event);
 }
 
+function togglePen(event) {
+  console.log(event.target);
+  lastButton.classList.remove("colorOn");
+  event.target.classList.add("colorOn");
+  console.log(event.target);
+  lastButton=event.target;
+  switch (true) {
+    case event.target===eraser: {
+      defColor=defBackground;
+      console.log(defColor);
+      return;
+    };
+    case event.target===color: defColor="chocolate";
+  }
+}
+
 function addColor(event) {
-  event.target.style.backgroundColor="chocolate";
+  event.target.style.backgroundColor=defColor;
 };
 
 function clearGrid() {
   gridArray.forEach(row => row.forEach(pixel => {
-    pixel.style.backgroundColor=defaultBackground;
+    pixel.style.backgroundColor=defBackground;
   }))
 }
 
