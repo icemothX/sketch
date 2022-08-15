@@ -30,13 +30,33 @@ clear.addEventListener("click", clearGrid);
 
 togglable.forEach(button => button.addEventListener("click", togglePen));
 
+colpick.addEventListener("input", changeColor);
+
 gridArray.forEach(row => row.forEach(pixel => {
-  pixel.addEventListener("mousedown", addColor)}));
+  pixel.addEventListener("mousedown", handleMouse)}));
 
 gridArray.forEach(row => row.forEach(pixel => {
   pixel.addEventListener("mouseover", handleMouse)}));
 
 function handleMouse(event) {
+  if (event.type==="mouseover" && !mouseDown) return;
+  switch (lastButton) {
+    case color: {
+      addColor(event.target, currentColor);
+      return;
+    };
+    case rainbow: {
+      addColor(event.target, randomColor());
+      return;
+    };
+    case eraser: {
+      addColor(event.target, defBackground);
+      return;
+    };
+  };
+};
+
+function toggleMouseDown(event) {
   if (mouseDown) addColor(event);
 }
 
@@ -44,25 +64,10 @@ function togglePen(event) {
   lastButton.classList.remove("colorOn");
   event.target.classList.add("colorOn");
   lastButton=event.target;
-  switch (true) {
-    case event.target===eraser: {
-      currentColor=defBackground;
-      return;
-    };
-    case event.target===color: {
-      currentColor=defColor;
-      return;
-    }
-    case event.target===rainbow: return; 
-    //random color will be picked during drawing
-
-    default: console.log("Something went wrong");
-  }
 }
 
-function addColor(event) {
-  if (lastButton===rainbow) currentColor=randomColor();
-  event.target.style.backgroundColor=currentColor;
+function addColor(pixel, color) {
+  pixel.style.backgroundColor=color;
 };
 
 function clearGrid() {
@@ -75,4 +80,8 @@ function randomColor() {
   return "#"+([0,0,0]).map(
     ()=>Math.floor(Math.random()*255).toString(16))
     .join("");
+}
+
+function changeColor(event) {
+  currentColor=event.target.value;
 }
