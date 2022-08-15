@@ -33,10 +33,14 @@ togglable.forEach(button => button.addEventListener("click", togglePen));
 colpick.addEventListener("input", changeColor);
 
 gridArray.forEach(row => row.forEach(pixel => {
-  pixel.addEventListener("mousedown", handleMouse)}));
+  pixel.addEventListener("mousedown", handleMouse)
+  pixel.addEventListener("mouseover", handleMouse)
+}));
 
+/*
 gridArray.forEach(row => row.forEach(pixel => {
   pixel.addEventListener("mouseover", handleMouse)}));
+*/
 
 function handleMouse(event) {
   if (event.type==="mouseover" && !mouseDown) return;
