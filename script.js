@@ -6,6 +6,7 @@ let rowArray = []; // array of div containers [N]
 let mouseDown = false;
 const defBackground = "aliceblue";
 let defColor = "chocolate";
+let currentColor = defColor;
 let lastButton = color;
 const togglable = document.querySelectorAll(".toggle");
 
@@ -45,15 +46,23 @@ function togglePen(event) {
   lastButton=event.target;
   switch (true) {
     case event.target===eraser: {
-      defColor=defBackground;
+      currentColor=defBackground;
       return;
     };
-    case event.target===color: defColor="chocolate";
+    case event.target===color: {
+      currentColor=defColor;
+      return;
+    }
+    case event.target===rainbow: return; 
+    //random color will be picked during drawing
+
+    default: console.log("Something went wrong");
   }
 }
 
 function addColor(event) {
-  event.target.style.backgroundColor=defColor;
+  if (lastButton===rainbow) currentColor=randomColor();
+  event.target.style.backgroundColor=currentColor;
 };
 
 function clearGrid() {
@@ -63,6 +72,7 @@ function clearGrid() {
 }
 
 function randomColor() {
-  let hex=([0,0,0]).map(Math.floor(Math.random()*255).toString(16));
-  return "#" + hex.join("");
+  return "#"+([0,0,0]).map(
+    ()=>Math.floor(Math.random()*255).toString(16))
+    .join("");
 }
