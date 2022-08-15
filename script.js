@@ -62,3 +62,7 @@ function clearGrid() {
   }))
 }
 
+function randomColor() {
+  let hex=([0,0,0]).map(Math.floor(Math.random()*255).toString(16));
+  return "#" + hex.join("");
+}
