@@ -40,15 +40,12 @@ function handleMouse(event) {
 }
 
 function togglePen(event) {
-  console.log(event.target);
   lastButton.classList.remove("colorOn");
   event.target.classList.add("colorOn");
-  console.log(event.target);
   lastButton=event.target;
   switch (true) {
     case event.target===eraser: {
       defColor=defBackground;
-      console.log(defColor);
       return;
     };
     case event.target===color: defColor="chocolate";
