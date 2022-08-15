@@ -31,7 +31,7 @@ clear.addEventListener("click", clearGrid);
 togglable.forEach(button => button.addEventListener("click", togglePen));
 
 gridArray.forEach(row => row.forEach(pixel => {
-  pixel.addEventListener("click", addColor)}));
+  pixel.addEventListener("mousedown", addColor)}));
 
 gridArray.forEach(row => row.forEach(pixel => {
   pixel.addEventListener("mouseover", handleMouse)}));
