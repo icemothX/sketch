@@ -7,7 +7,7 @@ let mouseDown = false;
 const defBackground = "aliceblue";
 let defColor = "chocolate";
 let currentColor = defColor;
-let lastButton = color;
+let activeButton = color;
 const togglable = document.querySelectorAll(".toggle");
 
 for (let i=0; i<grid; i++) {
@@ -44,7 +44,7 @@ gridArray.forEach(row => row.forEach(pixel => {
 
 function handleMouse(event) {
   if (event.type==="mouseover" && !mouseDown) return;
-  switch (lastButton) {
+  switch (activeButton) {
     case color: {
       addColor(event.target, currentColor);
       return;
@@ -65,9 +65,9 @@ function toggleMouseDown(event) {
 }
 
 function togglePen(event) {
-  lastButton.classList.remove("colorOn");
+  activeButton.classList.remove("colorOn");
   event.target.classList.add("colorOn");
-  lastButton=event.target;
+  activeButton=event.target;
 }
 
 function addColor(pixel, color) {
