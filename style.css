@@ -25,6 +25,8 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-self: center;
 }
 
 .row {
@@ -54,4 +56,10 @@ button {
 
 .colorOn {
   background-color: #855b5b;
+}
+
+#colpick {
+  border: 0px;
+  align-self: center;
+  padding: 0px;
 }
